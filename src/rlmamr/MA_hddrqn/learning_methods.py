@@ -96,7 +96,7 @@ def QLearn_squ(agents,
             t_b = sorted_t_b[selected_traj_mask][sorted_v_b[selected_traj_mask]]
 
         else:
-            
+
             selected_traj_mask = v_b.sum(1) >= sub_trace_len
             if torch.sum(selected_traj_mask).item() == 0:
                 return

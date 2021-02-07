@@ -118,7 +118,7 @@ def _prune_filtered_o_n(obs, id_valid):
         obs[i] = obs[i].reshape(obs[i].shape[0], -1)
     return tuple(obs)
 
-def save_check_point(cen_controller, cur_step, n_epi, cur_hysteretic, cur_eps, save_dir, mem, run_id, test_perform, max_save=3):
+def save_check_point(cen_controller, cur_step, n_epi, cur_hysteretic, cur_eps, save_dir, mem, run_id, test_perform, max_save=2):
 
     PATH = "./performance/" + save_dir + "/check_point/" + str(run_id) + "_cen_controller_" + "1.tar"
 
