@@ -400,4 +400,4 @@ class CaptureTarget_MA_v1(CaptureTarget_MA):
             for i in range(self.n_agent):
                 print("Agent_"+str(i)+" \t\t\t{}".format(self.primitive_obs[i] if not self.obs_one_hot else self.decode_position(self.agents[i], self.primitive_obs[i])))
 
-        return cur_actions, obs, r, int(won or self.step_n >= self.terminate_step), cur_actions_done
+        return cur_actions, obs, [r]*self.n_agent, int(won or self.step_n >= self.terminate_step), cur_actions_done

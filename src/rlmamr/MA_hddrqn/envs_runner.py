@@ -17,14 +17,14 @@ def worker(child, env):
                 actions, obs, reward, terminate, valid = env.step(data)
 
                 for idx, v in enumerate(valid):
-                    accu_rewards_per_step[idx] = accu_rewards_per_step[idx] + reward if not last_valid[idx] else reward
+                    accu_rewards_per_step[idx] = accu_rewards_per_step[idx] + reward[idx] if not last_valid[idx] else reward[idx]
                 last_valid = valid
 
                 # sent experience back
                 child.send((last_obs, actions, accu_rewards_per_step, obs, terminate, valid))
 
                 last_obs = obs
-                R += reward
+                R += sum(reward) / env.n_agent
 
             elif cmd == 'reset':
                 last_obs =  env.reset()

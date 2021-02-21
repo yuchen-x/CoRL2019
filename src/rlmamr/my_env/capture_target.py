@@ -118,7 +118,7 @@ class CaptureTarget(gym.Env):
             print(" ")
             print("Agent_1 \t action \t\t{}".format(ACTIONS[actions[1]]))
 
-        return actions, self.get_obs(debug), r, int(won or self.step_n >= self.terminate_step), [1,1]
+        return actions, self.get_obs(debug), [r]*self.n_agent, int(won or self.step_n >= self.terminate_step), [1,1]
     
     def get_obs(self, debug=False):
         if self.obs_one_hot:

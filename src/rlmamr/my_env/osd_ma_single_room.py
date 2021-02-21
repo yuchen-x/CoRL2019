@@ -432,8 +432,8 @@ class ObjSearchDelivery_v4(ObjSearchDelivery):
             The discrete macro-action indice which agents are executing in the current step.
         observations : ndarry | List[..]
             A list of  each agent's macor-observation.
-        rewards : float
-            A global shared reward.
+        rewards : float | List[..]
+            A global shared reward for each agent.
         done : bool
             Whether the current episode is over or not.
         cur_action_done : binary (1/0) | List[..]
@@ -519,7 +519,7 @@ class ObjSearchDelivery_v4(ObjSearchDelivery):
                 print("      " + " \t\t whole_task_finished  \t\t{}".format(human.whole_task_finished))
                 print(" ")
 
-        return cur_actions, observations, rewards, terminate or self.count_step == self.terminate_step, cur_actions_done
+        return cur_actions, observations, [rewards]*self.n_agent, terminate or self.count_step == self.terminate_step, cur_actions_done
 
     def _getobs(self, debug=False):
 

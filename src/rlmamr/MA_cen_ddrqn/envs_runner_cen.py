@@ -17,10 +17,10 @@ def worker(child, env):
                 actions, obs, reward, terminate, valid = env.step(data)
 
                 for idx, v in enumerate(valid):
-                    accu_id_rewards[idx] = accu_id_rewards[idx] + reward if not last_id_valid[idx] else reward
+                    accu_id_rewards[idx] = accu_id_rewards[idx] + reward[idx] if not last_id_valid[idx] else reward[idx]
                 last_id_valid = valid
 
-                accu_joint_rewards = accu_joint_rewards + reward if not last_joint_valid else reward
+                accu_joint_rewards = accu_joint_rewards + sum(reward)/env.n_agent if not last_joint_valid else sum(reward)/env.n_agent
                 last_joint_valid = max(valid)
 
                 # sent experience back
@@ -34,7 +34,7 @@ def worker(child, env):
                             max(valid)))
 
                 last_obs = obs
-                R += reward
+                R += sum(reward)/env.n_agent
 
             elif cmd == 'reset':
                 last_obs =  env.reset()

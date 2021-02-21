@@ -367,7 +367,7 @@ class Team_RNN(Team):
                 a, last_obs, r, t, v = self.env.step(a)
                 last_obs = [torch.from_numpy(o).float() for o in last_obs]
                 last_valid = v
-                R += self.discount**step * r
+                R += self.discount**step * sum(r)/self.env.n_agent
                 step += 1
 
         self.TEST_PERFORM.append(R/n_episode)

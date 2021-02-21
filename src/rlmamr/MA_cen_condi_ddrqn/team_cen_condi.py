@@ -375,7 +375,7 @@ class Team_RNN(Team):
                 last_obs = [torch.from_numpy(o).float() for o in obs]
                 last_action = [torch.tensor(a_idx).view(1,1) for a_idx in a]
                 last_valid = [torch.tensor(_v, dtype=torch.uint8).view(1,-1) for _v in v]
-                R += self.discount**step * r
+                R += self.discount**step * sum(r)/self.env.n_agent
                 step += 1
 
         self.TEST_PERFORM.append(R/n_episode)

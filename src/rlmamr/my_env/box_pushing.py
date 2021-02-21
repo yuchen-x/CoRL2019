@@ -166,7 +166,7 @@ class BoxPushing(gym.Env):
 
         observations = self._getobs(debug)
 
-        return cur_actions, observations, rewards, terminate or self.count_step == self.terminate_step, cur_actions_done
+        return cur_actions, observations, [rewards]*self.n_agent, terminate or self.count_step == self.terminate_step, cur_actions_done
 
     def _getobs(self, debug=False):
 
